@@ -1,9 +1,9 @@
-from ga1 import GA1_2, GA1_3, GA1_4, GA1_5, GA1_6, GA1_7, GA1_8, GA1_9, GA1_10, GA1_11, GA1_12, GA1_14, GA1_15, GA1_16, GA1_17, GA1_18
-from ga2 import GA2_2, GA2_4, GA2_5, GA2_5_file, GA2_9_old
-from ga2_9 import read_student_data, get_students
-from ga3 import GA3_1, GA3_2, GA3_3, GA3_4, GA3_5, GA3_6
-from ga4 import GA4_1, GA4_2, GA4_4, GA4_5, GA4_6, GA4_7,GA4_9_without_pdfplumber, GA4_10
-from ga5 import GA5_1, GA5_2, GA5_3, GA5_3_file, GA5_4, GA5_4_file, GA5_5, GA5_6, GA5_7, GA5_8, GA5_10, GA5_9
+from api.ga1 import GA1_2, GA1_3, GA1_4, GA1_5, GA1_6, GA1_7, GA1_8, GA1_9, GA1_10, GA1_11, GA1_12, GA1_14, GA1_15, GA1_16, GA1_17, GA1_18
+from api.ga2 import GA2_2, GA2_4, GA2_5, GA2_5_file, GA2_9_old
+from api.ga2_9 import read_student_data, get_students
+from api.ga3 import GA3_1, GA3_2, GA3_3, GA3_4, GA3_5, GA3_6
+from api.ga4 import GA4_1, GA4_2, GA4_4, GA4_5, GA4_6, GA4_7,GA4_9_without_pdfplumber, GA4_10
+from api.ga5 import GA5_1, GA5_2, GA5_3, GA5_3_file, GA5_4, GA5_4_file, GA5_5, GA5_6, GA5_7, GA5_8, GA5_10, GA5_9
 import asyncio
 import aiofiles
 import subprocess
