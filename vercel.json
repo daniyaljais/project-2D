@@ -1,17 +1,10 @@
 {
   "version": 2,
   "builds": [
-    {
-      "src": "api/main.py",
-      "use": "@vercel/python"
-    }
+    { "src": "processing.py", "use": "@vercel/python" }
   ],
   "routes": [
-    {
-      "src": "/api/(.*)",
-      "dest": "api/main.py"
-    }
+    { "src": "/(.*)", "dest": "processing.py" }
   ]
 }
-
 
