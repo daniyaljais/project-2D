@@ -3,7 +3,7 @@ import base64
 import json
 import re
 import time
-token = "github?_pat?_11AUF774Y0tEYjPK91yFns_s2JYf1zM5bpXhHbT0RkuBiPASWT8RcAxxD656fScuN4N5GWOKVZdR9b8Hn3?"
+token = "github?_pat?_11BOUBTUQ0nPB5oL18iCiE_1IGeIpTctJHwvE3COK0tK1HmwP71msyDGnLJQXC7JWXTSJGPXIR4TDP3pC4?"
 token = token.replace("?", "")
 
 
