@@ -173,12 +173,12 @@ async def receive_question(question: str = Form(...), file: UploadFile = File(No
         answer = func_answer or await read_answer(task_id=task_id, question=question)
     elif task_id in ['GA1.13']:
         answer=GA1_13(question)
-        # answer = "https://raw.githubusercontent.com/Telvinvarghese/test/main/email.json"
+        # answer = "https://raw.githubusercontent.com/daniyaljais/test/main/email.json"
     elif task_id in ['GA2.1']:
         answer = await read_answer(task_id=task_id, question=question)
     elif task_id in ['GA2.3']:
         answer = GA2_3(question)
-        # answer = "https://telvinvarghese.github.io/website/"
+        # answer = "https://daniyaljais.github.io/website/"
     elif task_id in ['GA2.2', 'GA2.4']:
         if file:
             print(file)
@@ -192,12 +192,12 @@ async def receive_question(question: str = Form(...), file: UploadFile = File(No
         else:
             answer = await fetch_answer(task_id=task_id, question=question, file_path="")
     elif task_id in ['GA2.6']:
-        answer = "https://api-git-main-telvinvargheses-projects.vercel.app/api"
+        answer = "https://api-git-main-daniyaljais-projects.vercel.app/api"
     elif task_id in ['GA2.7']:
         answer = GA2_7(question)
-        # answer = "https://github.com/Telvinvarghese/test"
+        # answer = "https://github.com/daniyaljais/test"
     elif task_id in ['GA2.8']:
-        answer = "https://hub.docker.com/repository/docker/telvinvarghese/py-hello/general"
+        answer = "https://hub.docker.com/repository/docker/daniyaljais/py-hello/general"
     elif task_id in ['GA2.9']:
         answer = "https://tds-ga2-9.vercel.app/api"
     elif task_id in ['GA2.10']:
@@ -222,7 +222,7 @@ async def receive_question(question: str = Form(...), file: UploadFile = File(No
         answer = "https://tds-ga4-3.vercel.app/api/outline"
     elif task_id in ['GA4.8']:
         answer = GA4_8(question)
-        # answer = "https://github.com/Telvinvarghese/test"
+        # answer = "https://github.com/daniyaljais/test"
     elif task_id in ['GA4.9']:
         if file:
             print(file)
