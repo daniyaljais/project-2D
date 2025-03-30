@@ -1,8 +1,8 @@
 import csv
-import uvicorn # type: ignore
-from fastapi.middleware.cors import CORSMiddleware # type: ignore
-from fastapi.responses import JSONResponse # type: ignore
-from fastapi import FastAPI, Query, HTTPException # type: ignore
+import uvicorn  # type: ignore
+from fastapi.middleware.cors import CORSMiddleware  # type: ignore
+from fastapi.responses import JSONResponse  # type: ignore
+from fastapi import FastAPI, Query, HTTPException  # type: ignore
 import zipfile
 import requests
 from PIL import Image
@@ -11,7 +11,7 @@ import colorsys
 import os
 import io
 import base64
-from fastapi import UploadFile # type: ignore
+from fastapi import UploadFile  # type: ignore
 import subprocess
 import asyncio
 import hashlib
@@ -55,8 +55,7 @@ async def GA2_2(file, max_size=1500, target_width=800):
     temp_dir = "/tmp/" if os.getenv("VERCEL") else "compressed_images/"
     os.makedirs(temp_dir, exist_ok=True)
 
-    temp_path = os.path.join(
-        temp_dir, file.filename.rsplit(".", 1)[0] + ".png")
+    temp_path = os.path.join(temp_dir, file.filename.rsplit(".", 1)[0] + ".png")
 
     # Open image
     img = Image.open(io.BytesIO(await file.read()))
@@ -64,11 +63,11 @@ async def GA2_2(file, max_size=1500, target_width=800):
     # Reduce color depth for PNG (if needed)
     if file.filename.lower().endswith(".png"):
         img = img.convert("P", palette=Image.ADAPTIVE)  # Reduce colors to 4
-        img.save(temp_path, "PNG", optimize=True,bits=4)
+        img.save(temp_path, "PNG", optimize=True, bits=4)
 
     # Compression loop
     quality = 85
-    while file.filename.lower().endswith in [".jpg", ".jpeg"]:
+    while file.filename.lower().endswith((".jpg", ".jpeg")):
         img.save(temp_path, "JPEG", quality=quality, optimize=True)
         if os.path.getsize(temp_path) <= max_size or quality <= 10:
             break
@@ -82,13 +81,12 @@ async def GA2_2(file, max_size=1500, target_width=800):
     return encoded  # Returning both path & Base64
 
 def GA2_4(question: str):
-   email = re.findall(
-       r'Run this program on Google Colab, allowing all required access to your email ID: ([\w. % +-]+@[\w.-] +\.\w+)', question)[0]
-   expiry_year = "2025"
-   print(email, expiry_year)
-   hash_value = hashlib.sha256(
-       f"{email} {expiry_year}".encode()).hexdigest()[-5:]
-   return hash_value
+    email = re.findall(
+        r'Run this program on Google Colab, allowing all required access to your email ID: ([\w.%+-]+@[\w.-]+\.\w+)', question)[0]
+    expiry_year = "2025"
+    print(email, expiry_year)
+    hash_value = hashlib.sha256(f"{email} {expiry_year}".encode()).hexdigest()[-5:]
+    return hash_value
 
 def download_image(url, filename="lenna.webp"):
     """Downloads an image from the given URL and returns its absolute path."""
@@ -98,7 +96,7 @@ def download_image(url, filename="lenna.webp"):
         with open(filename, "wb") as file:
             file.write(response.content)
             if BASE_DIR == ".":
-               return os.path.abspath(filename)
+                return os.path.abspath(filename)
             return os.path.abspath(os.path.join(BASE_DIR, filename))
     raise Exception(
         f"Failed to download image, status code: {response.status_code}")
@@ -113,7 +111,7 @@ def count_light_pixels(image_path: str, threshold: float = 0.814):
     return light_pixels
 
 async def GA2_5(question: str, image_path: str):
-    if image_path=="":
+    if image_path == "":
         image_path = download_image("https://exam.sanand.workers.dev/lenna.webp")
     threshold = re.search(
         r'Number of pixels with lightness > (\d+\.\d+)', question)[1]
@@ -125,9 +123,12 @@ async def GA2_5_file(question: str, file: UploadFile):
     threshold = re.search(
         r'Number of pixels with lightness > (\d+\.\d+)', question)[1]
     threshold = float(threshold)
-    image_path = io.BytesIO(await file.read())
-    print(image_path, threshold)
-    light_pixels = count_light_pixels(image_path, threshold)
+    image_bytes = io.BytesIO(await file.read())
+    image = Image.open(image_bytes).convert("RGB")
+    temp_path = "temp_image.png"
+    image.save(temp_path)
+    print(temp_path, threshold)
+    light_pixels = count_light_pixels(temp_path, threshold)
     return int(light_pixels)
 
 async def load_student_data(file: UploadFile):
@@ -194,7 +195,7 @@ def GA2_9_old(file_path: str, port: int):
 
     # Run FastAPI in a background process using subprocess
     subprocess.Popen(["uvicorn", "ga2:app", "--host",
-                     "0.0.0.0", "--port", str(port)])
+                      "0.0.0.0", "--port", str(port)])
 
     # Return the URL for the API endpoint
     return f"http://127.0.0.1:{port}/api"
